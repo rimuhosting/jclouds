@@ -23,25 +23,23 @@
  */
 package org.jclouds.rimuhosting.miro;
 
+import org.jclouds.concurrent.Timeout;
+import org.jclouds.rimuhosting.miro.domain.Image;
+
 import java.util.SortedSet;
 import java.util.concurrent.TimeUnit;
-
-import org.jclouds.concurrent.Timeout;
-import org.jclouds.rimuhosting.miro.domain.Status;
-import org.jclouds.rimuhosting.miro.domain.Image;
-import org.jclouds.rimuhosting.miro.functions.ParseImagesFromJsonResponse;
 
 /**
  * Provides synchronous access to RimuHosting.
  * <p/>
- * 
+ *
+ * @author Adrian Cole
  * @see RimuHostingAsyncClient
  * @see <a href="TODO: insert URL of client documentation" />
- * @author Adrian Cole
  */
 @Timeout(duration = 4, timeUnit = TimeUnit.SECONDS)
 public interface RimuHostingClient {
 
-    SortedSet<Image> getImageList();
+   SortedSet<Image> getImageList();
 
 }

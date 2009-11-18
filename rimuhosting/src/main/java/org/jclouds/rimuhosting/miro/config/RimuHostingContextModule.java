@@ -23,27 +23,25 @@
  */
 package org.jclouds.rimuhosting.miro.config;
 
-import java.net.URI;
-
-import javax.inject.Named;
-import javax.inject.Singleton;
-
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 import org.jclouds.http.functions.config.ParserModule.CDateTimeAdapter;
 import org.jclouds.http.functions.config.ParserModule.DateTimeAdapter;
 import org.jclouds.lifecycle.Closer;
 import org.jclouds.rest.RestContext;
 import org.jclouds.rest.internal.RestContextImpl;
 import org.jclouds.rimuhosting.miro.RimuHosting;
-import org.jclouds.rimuhosting.miro.RimuHostingClient;
 import org.jclouds.rimuhosting.miro.RimuHostingAsyncClient;
+import org.jclouds.rimuhosting.miro.RimuHostingClient;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import java.net.URI;
 
 /**
  * Configures the RimuHosting connection, including logging and http transport.
- * 
+ *
  * @author Adrian Cole
  */
 public class RimuHostingContextModule extends AbstractModule {
@@ -55,7 +53,7 @@ public class RimuHostingContextModule extends AbstractModule {
    @Provides
    @Singleton
    RestContext<RimuHostingAsyncClient, RimuHostingClient> provideContext(Closer closer, RimuHostingAsyncClient asyncApi,
-            RimuHostingClient syncApi, @RimuHosting URI endPoint, @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER) String account) {
+                                                                         RimuHostingClient syncApi, @RimuHosting URI endPoint, @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER) String account) {
       return new RestContextImpl<RimuHostingAsyncClient, RimuHostingClient>(closer, asyncApi, syncApi, endPoint, account);
    }
 

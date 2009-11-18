@@ -23,31 +23,25 @@
  */
 package org.jclouds.rimuhosting.miro;
 
-import static org.testng.Assert.assertEquals;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.Module;
+import com.google.inject.TypeLiteral;
 import org.jclouds.http.filters.BasicAuthentication;
 import org.jclouds.rest.RestContext;
 import org.jclouds.rest.internal.RestContextImpl;
 import org.jclouds.rimuhosting.miro.config.RimuHostingRestClientModule;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
-import org.jclouds.rimuhosting.miro.RimuHostingContextBuilder;
-import org.jclouds.rimuhosting.miro.RimuHostingAsyncClient;
-import org.jclouds.rimuhosting.miro.RimuHostingClient;
-import org.jclouds.rimuhosting.miro.RimuHostingPropertiesBuilder;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.Module;
-import com.google.inject.TypeLiteral;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tests behavior of modules configured in RimuHostingContextBuilder
- * 
+ *
  * @author Adrian Cole
  */
 @Test(groups = "unit", testName = "rimuhosting.RimuHostingContextBuilderTest")
@@ -56,11 +50,11 @@ public class RimuHostingContextBuilderTest {
    public void testNewBuilder() {
       RimuHostingContextBuilder builder = newBuilder();
       assertEquals(builder.getProperties().getProperty(RimuHostingConstants.PROPERTY_RIMUHOSTING_ENDPOINT),
-               "https://rimuhosting.com/r");
+              "https://rimuhosting.com/r");
       assertEquals(builder.getProperties().getProperty(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER),
-               "user");
+              "user");
       assertEquals(builder.getProperties().getProperty(RimuHostingConstants.PROPERTY_RIMUHOSTING_PASSWORD),
-               "password");
+              "password");
    }
 
    public void testBuildContext() {
@@ -86,8 +80,8 @@ public class RimuHostingContextBuilderTest {
    }
 
    private RimuHostingContextBuilder newBuilder() {
-       RimuHostingContextBuilder builder = new RimuHostingContextBuilder(new RimuHostingPropertiesBuilder(
-               "user", "password").build());
+      RimuHostingContextBuilder builder = new RimuHostingContextBuilder(new RimuHostingPropertiesBuilder(
+              "user", "password").build());
       return builder;
    }
 

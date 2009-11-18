@@ -23,13 +23,12 @@
  */
 package org.jclouds.rimuhosting.miro;
 
-import java.util.Properties;
-
+import com.google.inject.Module;
 import org.jclouds.http.config.JavaUrlHttpCommandExecutorServiceModule;
 import org.jclouds.logging.jdk.config.JDKLoggingModule;
 import org.jclouds.rest.RestContext;
 
-import com.google.inject.Module;
+import java.util.Properties;
 
 /**
  * Creates {@link RestContext} for {@link RimuHostingClient} instances based on the most commonly
@@ -40,7 +39,7 @@ import com.google.inject.Module;
  * <p/>
  * If no <code>Module</code>s are specified, the default {@link JDKLoggingModule logging} and
  * {@link JavaUrlHttpCommandExecutorServiceModule http transports} will be installed.
- * 
+ *
  * @author Adrian Cole
  * @see RestContext
  * @see RimuHostingClient
@@ -49,14 +48,14 @@ import com.google.inject.Module;
 public class RimuHostingContextFactory {
 
    public static RestContext<RimuHostingAsyncClient, RimuHostingClient> createContext(String user, String password,
-            Module... modules) {
+                                                                                      Module... modules) {
       return new RimuHostingContextBuilder(new RimuHostingPropertiesBuilder(user, password).build())
-               .withModules(modules).buildContext();
+              .withModules(modules).buildContext();
    }
 
    public static RestContext<RimuHostingAsyncClient, RimuHostingClient> createContext(Properties properties, Module... modules) {
       return new RimuHostingContextBuilder(new RimuHostingPropertiesBuilder(properties).build())
-               .withModules(modules).buildContext();
+              .withModules(modules).buildContext();
    }
 
 }

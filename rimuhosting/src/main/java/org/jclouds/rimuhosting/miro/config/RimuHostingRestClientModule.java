@@ -23,29 +23,26 @@
  */
 package org.jclouds.rimuhosting.miro.config;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-
-import javax.inject.Named;
-import javax.inject.Singleton;
-
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 import org.jclouds.concurrent.internal.SyncProxy;
 import org.jclouds.http.RequiresHttp;
 import org.jclouds.http.filters.BasicAuthentication;
 import org.jclouds.rest.ConfiguresRestClient;
 import org.jclouds.rest.RestClientFactory;
-
 import org.jclouds.rimuhosting.miro.RimuHosting;
-import org.jclouds.rimuhosting.miro.RimuHostingClient;
 import org.jclouds.rimuhosting.miro.RimuHostingAsyncClient;
+import org.jclouds.rimuhosting.miro.RimuHostingClient;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
 
 /**
  * Configures the RimuHosting connection.
- * 
+ *
  * @author Adrian Cole
  */
 @RequiresHttp
@@ -61,9 +58,9 @@ public class RimuHostingRestClientModule extends AbstractModule {
    @Provides
    @Singleton
    public BasicAuthentication provideBasicAuthentication(
-            @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER) String user,
-            @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_PASSWORD) String password)
-            throws UnsupportedEncodingException {
+           @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER) String user,
+           @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_PASSWORD) String password)
+           throws UnsupportedEncodingException {
       return new BasicAuthentication(user, password);
    }
 
@@ -76,10 +73,10 @@ public class RimuHostingRestClientModule extends AbstractModule {
    @Provides
    @Singleton
    public RimuHostingClient provideClient(RimuHostingAsyncClient client) throws IllegalArgumentException,
-            SecurityException, NoSuchMethodException {
+           SecurityException, NoSuchMethodException {
       return SyncProxy.create(RimuHostingClient.class, client);
    }
-   
+
    @Provides
    @Singleton
    @RimuHosting

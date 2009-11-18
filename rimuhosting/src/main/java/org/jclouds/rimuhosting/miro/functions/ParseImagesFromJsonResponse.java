@@ -23,84 +23,54 @@
  */
 package org.jclouds.rimuhosting.miro.functions;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.jclouds.http.functions.ParseJson;
+import org.jclouds.rimuhosting.miro.domain.Image;
+import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingResponse;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.Map;
 import java.util.SortedSet;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.jclouds.http.functions.ParseJson;
-import org.jclouds.rimuhosting.miro.domain.Image;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 /**
- * This parses {@link org.jclouds.rimuhosting.miro.domain.Status} from a json string.
+ * This parses {@link org.jclouds.rimuhosting.miro.domain.Image} from a json string.
  *
- * @author Adrian Cole
+ * @author Ivan Meredith
  */
 @Singleton
-public class ParseImagesFromJsonResponse extends ParseJson< SortedSet<Image>> {
-   public static class RimuHostingEnvelope {
-       public RimuHostingResponse getGetDistrosResponse() {
-           return get_distros_response;
-       }
+public class ParseImagesFromJsonResponse extends ParseJson<SortedSet<Image>> {
 
-       public  void setGetDistrosResponse(RimuHostingResponse get_distros_response) {
-           this.get_distros_response = get_distros_response;
-       }
-
-       private RimuHostingResponse get_distros_response;
-   }
-
-   public static class RimuHostingResponse {
-       String status_message;
-
-       public String getStatus_message() {
-           return status_message;
-       }
-
-       public void setStatus_message(String status_message) {
-           this.status_message = status_message;
-       }
-
-       public Integer getStatus_code() {
-           return status_code;
-       }
-
-       public void setStatus_code(Integer status_code) {
-           this.status_code = status_code;
-       }
-
-       Integer status_code;
-
-       public SortedSet<Image> getDistro_infos() {
-           return distro_infos;
-       }
-
-       public void setDistro_infos(SortedSet<Image> distro_infos) {
-           this.distro_infos = distro_infos;
-       }
-
-       SortedSet<Image> distro_infos;
-   }
    @Inject
    public ParseImagesFromJsonResponse(Gson gson) {
       super(gson);
    }
 
-    public  SortedSet<Image> apply(InputStream stream) {
-       Type setType = new TypeToken<RimuHostingEnvelope>() {
+   private static class DistroResponse extends RimuHostingResponse {
+      private SortedSet<Image> distro_infos;
+
+      public SortedSet<Image> getDistroInfos() {
+         return distro_infos;
+      }
+
+      public void setDistroInfos(SortedSet<Image> distro_infos) {
+         this.distro_infos = distro_infos;
+      }
+   }
+
+   public SortedSet<Image> apply(InputStream stream) {
+      Type setType = new TypeToken<Map<String, DistroResponse>>() {
       }.getType();
       try {
-            RimuHostingEnvelope t =  gson.fromJson(new InputStreamReader(stream, "UTF-8"), setType);
-          return t.getGetDistrosResponse().getDistro_infos();
+         Map<String, DistroResponse> t = gson.fromJson(new InputStreamReader(stream, "UTF-8"), setType);
+         return t.values().iterator().next().getDistroInfos();
       } catch (UnsupportedEncodingException e) {
          throw new RuntimeException("jclouds requires UTF-8 encoding", e);
       }
-    }
+   }
 }

@@ -24,20 +24,17 @@
 package org.jclouds.rimuhosting.miro;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.List;
-import java.util.Properties;
-
+import com.google.inject.Module;
+import com.google.inject.TypeLiteral;
 import org.jclouds.rest.RestContextBuilder;
 import org.jclouds.rimuhosting.miro.config.RimuHostingContextModule;
 import org.jclouds.rimuhosting.miro.config.RimuHostingRestClientModule;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 
-import com.google.inject.Module;
-import com.google.inject.TypeLiteral;
+import java.util.List;
+import java.util.Properties;
 
 /**
- * 
  * @author Adrian Cole
  */
 public class RimuHostingContextBuilder extends RestContextBuilder<RimuHostingAsyncClient, RimuHostingClient> {

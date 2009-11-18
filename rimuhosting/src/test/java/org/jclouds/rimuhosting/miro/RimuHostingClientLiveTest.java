@@ -24,23 +24,14 @@
 package org.jclouds.rimuhosting.miro;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.SortedSet;
-
 import org.jclouds.logging.log4j.config.Log4JLoggingModule;
-import org.jclouds.rimuhosting.miro.domain.Status;
-import org.jclouds.rimuhosting.miro.RimuHostingClient;
-import org.jclouds.rimuhosting.miro.RimuHostingContextFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-import org.testng.Assert;
 
 /**
  * Tests behavior of {@code RimuHostingClient}
- * 
+ *
  * @author Adrian Cole
  */
 @Test(groups = "live", testName = "rimuhosting.RimuHostingClientLiveTest")
@@ -48,18 +39,18 @@ public class RimuHostingClientLiveTest {
 
    private RimuHostingClient connection;
 
-   @BeforeGroups(groups = { "live" })
+   @BeforeGroups(groups = {"live"})
    public void setupClient() {
       String user = checkNotNull(System.getProperty("jclouds.test.user"), "jclouds.test.user");
       String password = checkNotNull(System.getProperty("jclouds.test.key"), "jclouds.test.key");
 
       connection = RimuHostingContextFactory.createContext(user, password, new Log4JLoggingModule())
-               .getApi();
+              .getApi();
    }
 
    @Test
    public void testListImages() {
-        Assert.assertEquals( connection.getImageList().first().getId(),"lenny");    
+      Assert.assertEquals(connection.getImageList().first().getId(), "lenny");
    }
 
 }

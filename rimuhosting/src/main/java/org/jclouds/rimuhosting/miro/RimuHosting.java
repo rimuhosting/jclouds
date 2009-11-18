@@ -23,21 +23,19 @@
  */
 package org.jclouds.rimuhosting.miro;
 
+import javax.inject.Qualifier;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import javax.inject.Qualifier;
-
 /**
  * Related to a RimuHosting resource.
- * 
+ *
  * @author Adrian Cole
- * 
  */
 @Retention(value = RetentionPolicy.RUNTIME)
-@Target(value = { ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
+@Target(value = {ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})
 @Qualifier
 public @interface RimuHosting {
 

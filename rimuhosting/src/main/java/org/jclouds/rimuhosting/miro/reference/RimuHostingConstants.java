@@ -25,7 +25,7 @@ package org.jclouds.rimuhosting.miro.reference;
 
 /**
  * Configuration properties and constants used in RimuHosting connections.
- * 
+ *
  * @author Adrian Cole
  */
 public interface RimuHostingConstants {

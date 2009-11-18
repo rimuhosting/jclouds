@@ -23,8 +23,8 @@
  */
 package org.jclouds.rimuhosting.miro.config;
 
-import static org.testng.Assert.assertEquals;
-
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.jclouds.concurrent.WithinThreadExecutorService;
 import org.jclouds.concurrent.config.ExecutorServiceModule;
 import org.jclouds.http.HttpRetryHandler;
@@ -40,10 +40,8 @@ import org.jclouds.logging.Logger;
 import org.jclouds.logging.Logger.LoggerFactory;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 import org.jclouds.util.Jsr330;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 /**
  * @author Adrian Cole
@@ -56,11 +54,11 @@ public class RimuHostingContextModuleTest {
          @Override
          protected void configure() {
             bindConstant().annotatedWith(Jsr330.named(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER)).to(
-                     "user");
+                    "user");
             bindConstant().annotatedWith(Jsr330.named(RimuHostingConstants.PROPERTY_RIMUHOSTING_PASSWORD))
-                     .to("password");
+                    .to("password");
             bindConstant().annotatedWith(Jsr330.named(RimuHostingConstants.PROPERTY_RIMUHOSTING_ENDPOINT))
-                     .to("http://localhost");
+                    .to("http://localhost");
             bind(Logger.LoggerFactory.class).toInstance(new LoggerFactory() {
                public Logger getLogger(String category) {
                   return Logger.NULL;
@@ -69,27 +67,27 @@ public class RimuHostingContextModuleTest {
             super.configure();
          }
       }, new ParserModule(), new JavaUrlHttpCommandExecutorServiceModule(),
-               new ExecutorServiceModule(new WithinThreadExecutorService()));
+              new ExecutorServiceModule(new WithinThreadExecutorService()));
    }
 
    @Test
    void testServerErrorHandler() {
       DelegatingErrorHandler handler = createInjector().getInstance(DelegatingErrorHandler.class);
       assertEquals(handler.getServerErrorHandler().getClass(),
-               CloseContentAndSetExceptionErrorHandler.class);
+              CloseContentAndSetExceptionErrorHandler.class);
    }
 
    @Test
    void testDateTimeAdapter() {
       assertEquals(this.createInjector().getInstance(DateTimeAdapter.class).getClass(),
-               CDateTimeAdapter.class);
+              CDateTimeAdapter.class);
    }
 
    @Test
    void testClientErrorHandler() {
       DelegatingErrorHandler handler = createInjector().getInstance(DelegatingErrorHandler.class);
       assertEquals(handler.getClientErrorHandler().getClass(),
-               CloseContentAndSetExceptionErrorHandler.class);
+              CloseContentAndSetExceptionErrorHandler.class);
    }
 
    @Test
