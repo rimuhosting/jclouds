@@ -33,6 +33,10 @@ import org.jclouds.rimuhosting.miro.RimuHostingClient;
 import org.jclouds.rimuhosting.miro.RimuHostingContextFactory;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import org.testng.Assert;
 
 /**
  * Tests behavior of {@code RimuHostingClient}
@@ -55,7 +59,7 @@ public class RimuHostingClientLiveTest {
 
    @Test
    public void testListImages() {
-      System.out.println(connection.getImageList());
+        Assert.assertEquals( connection.getImageList().first().getId(),"lenny");    
    }
 
 }

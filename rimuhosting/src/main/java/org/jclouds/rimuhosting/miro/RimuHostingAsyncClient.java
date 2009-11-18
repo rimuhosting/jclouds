@@ -24,6 +24,7 @@
 package org.jclouds.rimuhosting.miro;
 
 import java.util.concurrent.Future;
+import java.util.SortedSet;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -36,6 +37,7 @@ import org.jclouds.rest.annotations.Endpoint;
 import org.jclouds.rest.annotations.RequestFilters;
 import org.jclouds.rest.annotations.ResponseParser;
 import org.jclouds.rimuhosting.miro.functions.ParseImagesFromJsonResponse;
+import org.jclouds.rimuhosting.miro.domain.Image;
 
 /**
  * Provides asynchronous access to RimuHosting via their REST API.
@@ -52,6 +54,6 @@ public interface RimuHostingAsyncClient {
    @ResponseParser(ParseImagesFromJsonResponse.class)
    @Path("/distributions")
    @Produces(MediaType.APPLICATION_JSON) @Consumes(MediaType.APPLICATION_JSON)
-   Future<String> getImageList();
+   Future<SortedSet<Image>> getImageList();
 
 }

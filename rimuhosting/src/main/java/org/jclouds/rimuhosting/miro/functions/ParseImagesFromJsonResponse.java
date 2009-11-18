@@ -33,7 +33,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.jclouds.http.functions.ParseJson;
-import org.jclouds.rimuhosting.miro.domain.Status;
+import org.jclouds.rimuhosting.miro.domain.Image;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -44,14 +44,63 @@ import com.google.gson.reflect.TypeToken;
  * @author Adrian Cole
  */
 @Singleton
-public class ParseImagesFromJsonResponse extends ParseJson<String> {
+public class ParseImagesFromJsonResponse extends ParseJson< SortedSet<Image>> {
+   public static class RimuHostingEnvelope {
+       public RimuHostingResponse getGetDistrosResponse() {
+           return get_distros_response;
+       }
 
+       public  void setGetDistrosResponse(RimuHostingResponse get_distros_response) {
+           this.get_distros_response = get_distros_response;
+       }
+
+       private RimuHostingResponse get_distros_response;
+   }
+
+   public static class RimuHostingResponse {
+       String status_message;
+
+       public String getStatus_message() {
+           return status_message;
+       }
+
+       public void setStatus_message(String status_message) {
+           this.status_message = status_message;
+       }
+
+       public Integer getStatus_code() {
+           return status_code;
+       }
+
+       public void setStatus_code(Integer status_code) {
+           this.status_code = status_code;
+       }
+
+       Integer status_code;
+
+       public SortedSet<Image> getDistro_infos() {
+           return distro_infos;
+       }
+
+       public void setDistro_infos(SortedSet<Image> distro_infos) {
+           this.distro_infos = distro_infos;
+       }
+
+       SortedSet<Image> distro_infos;
+   }
    @Inject
    public ParseImagesFromJsonResponse(Gson gson) {
       super(gson);
    }
 
-    public String apply(InputStream stream) {
-        return stream.toString();  
+    public  SortedSet<Image> apply(InputStream stream) {
+       Type setType = new TypeToken<RimuHostingEnvelope>() {
+      }.getType();
+      try {
+            RimuHostingEnvelope t =  gson.fromJson(new InputStreamReader(stream, "UTF-8"), setType);
+          return t.getGetDistrosResponse().getDistro_infos();
+      } catch (UnsupportedEncodingException e) {
+         throw new RuntimeException("jclouds requires UTF-8 encoding", e);
+      }
     }
 }

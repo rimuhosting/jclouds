@@ -28,6 +28,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.jclouds.concurrent.Timeout;
 import org.jclouds.rimuhosting.miro.domain.Status;
+import org.jclouds.rimuhosting.miro.domain.Image;
+import org.jclouds.rimuhosting.miro.functions.ParseImagesFromJsonResponse;
 
 /**
  * Provides synchronous access to RimuHosting.
@@ -40,6 +42,6 @@ import org.jclouds.rimuhosting.miro.domain.Status;
 @Timeout(duration = 4, timeUnit = TimeUnit.SECONDS)
 public interface RimuHostingClient {
 
-   String getImageList();
+    SortedSet<Image> getImageList();
 
 }
