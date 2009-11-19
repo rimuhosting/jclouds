@@ -57,5 +57,8 @@ public class RimuHostingClientLiveTest {
    public void testListInstances() {
       Assert.assertEquals(connection.getInstanceList().first().getName(), "deltacloud.rimuhosting.com");  
    }
-
+   @Test
+   public void testListPricingPlans() {
+      Assert.assertEquals(connection.getPricingPlanList().first().getId(), "AUCK1");  
+   }
 }

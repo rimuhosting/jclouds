@@ -29,8 +29,10 @@ import org.jclouds.rest.annotations.MatrixParams;
 import org.jclouds.rest.annotations.RequestFilters;
 import org.jclouds.rimuhosting.miro.domain.Image;
 import org.jclouds.rimuhosting.miro.domain.Instance;
+import org.jclouds.rimuhosting.miro.domain.PricingPlan;
 import org.jclouds.rimuhosting.miro.functions.ParseImagesFromJsonResponse;
 import org.jclouds.rimuhosting.miro.functions.ParseInstancesFromJsonResponse;
+import org.jclouds.rimuhosting.miro.functions.ParsePricingPlansFromJsonResponse;
 import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
 
 import javax.ws.rs.*;
@@ -64,5 +66,11 @@ public interface RimuHostingAsyncClient {
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
    Future<SortedSet<Instance>> getInstanceList();
+
+   @GET @Path("/pricing-plans")
+   @MatrixParams(keys = "server-type", values = "VPS")
+   @Consumes(MediaType.APPLICATION_JSON)
+   @ResponseParser(ParsePricingPlansFromJsonResponse.class)
+   Future<SortedSet<PricingPlan>> getPricingPlanList();
 
 }
