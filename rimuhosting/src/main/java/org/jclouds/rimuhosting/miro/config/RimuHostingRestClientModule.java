@@ -33,6 +33,7 @@ import org.jclouds.rest.RestClientFactory;
 import org.jclouds.rimuhosting.miro.RimuHosting;
 import org.jclouds.rimuhosting.miro.RimuHostingAsyncClient;
 import org.jclouds.rimuhosting.miro.RimuHostingClient;
+import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 
 import javax.inject.Named;
@@ -57,11 +58,10 @@ public class RimuHostingRestClientModule extends AbstractModule {
 
    @Provides
    @Singleton
-   public BasicAuthentication provideBasicAuthentication(
-           @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_USER) String user,
-           @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_PASSWORD) String password)
+   public RimuHostingAuthentication provideRimuHostingAuthentication(
+              @Named(RimuHostingConstants.PROPERTY_RIMUHOSTING_PASSWORD) String apikey)
            throws UnsupportedEncodingException {
-      return new BasicAuthentication(user, password);
+      return new RimuHostingAuthentication(apikey);
    }
 
    @Provides

@@ -47,7 +47,7 @@
     </scm>
     <properties>
         <jclouds.test.user>apikey</jclouds.test.user>
-        <jclouds.test.key>test</jclouds.test.key>
+        <jclouds.test.key>ece1c2b1ed9f2d6d70d7c2f8e724b675</jclouds.test.key>
     </properties>
     <dependencies>
         <dependency>

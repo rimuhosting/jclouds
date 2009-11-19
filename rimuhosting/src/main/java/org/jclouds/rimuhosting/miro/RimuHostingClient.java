@@ -25,6 +25,7 @@ package org.jclouds.rimuhosting.miro;
 
 import org.jclouds.concurrent.Timeout;
 import org.jclouds.rimuhosting.miro.domain.Image;
+import org.jclouds.rimuhosting.miro.domain.Instance;
 
 import java.util.SortedSet;
 import java.util.concurrent.TimeUnit;
@@ -42,4 +43,5 @@ public interface RimuHostingClient {
 
    SortedSet<Image> getImageList();
 
+   SortedSet<Instance> getInstanceList();   
 }

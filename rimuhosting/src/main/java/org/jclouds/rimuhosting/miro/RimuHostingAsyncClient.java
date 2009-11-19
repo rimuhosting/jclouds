@@ -25,13 +25,15 @@ package org.jclouds.rimuhosting.miro;
 
 import org.jclouds.rest.annotations.Endpoint;
 import org.jclouds.rest.annotations.ResponseParser;
+import org.jclouds.rest.annotations.MatrixParams;
+import org.jclouds.rest.annotations.RequestFilters;
 import org.jclouds.rimuhosting.miro.domain.Image;
+import org.jclouds.rimuhosting.miro.domain.Instance;
 import org.jclouds.rimuhosting.miro.functions.ParseImagesFromJsonResponse;
+import org.jclouds.rimuhosting.miro.functions.ParseInstancesFromJsonResponse;
+import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.SortedSet;
 import java.util.concurrent.Future;
@@ -44,6 +46,7 @@ import java.util.concurrent.Future;
  * @see RimuHostingClient
  * @see <a href="TODO: insert URL of client documentation" />
  */
+@RequestFilters(RimuHostingAuthentication.class)
 @Endpoint(RimuHosting.class)
 public interface RimuHostingAsyncClient {
 
@@ -53,5 +56,13 @@ public interface RimuHostingAsyncClient {
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
    Future<SortedSet<Image>> getImageList();
+
+   @GET
+   @ResponseParser(ParseInstancesFromJsonResponse.class)
+   @MatrixParams(keys = "include_inactive", values = "N")
+   @Path("/orders")
+   @Produces(MediaType.APPLICATION_JSON)
+   @Consumes(MediaType.APPLICATION_JSON)
+   Future<SortedSet<Instance>> getInstanceList();
 
 }

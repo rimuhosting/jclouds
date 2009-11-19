@@ -32,6 +32,7 @@ import org.jclouds.rest.RestContext;
 import org.jclouds.rest.internal.RestContextImpl;
 import org.jclouds.rimuhosting.miro.config.RimuHostingRestClientModule;
 import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
+import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
@@ -68,7 +69,7 @@ public class RimuHostingContextBuilderTest {
       Injector i = newBuilder().buildInjector();
       assert i.getInstance(Key.get(new TypeLiteral<RestContext<RimuHostingAsyncClient, RimuHostingClient>>() {
       })) != null; // TODO: test all things taken from context
-      assert i.getInstance(BasicAuthentication.class) != null;
+      assert i.getInstance(RimuHostingAuthentication.class) != null;
    }
 
    protected void testAddContextModule() {
