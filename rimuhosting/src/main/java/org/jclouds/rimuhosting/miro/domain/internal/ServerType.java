@@ -1,4 +1,4 @@
-package org.jclouds.rimuhosting.miro.domain;
+package org.jclouds.rimuhosting.miro.domain.internal;
 
 /**
  * Created by IntelliJ IDEA.

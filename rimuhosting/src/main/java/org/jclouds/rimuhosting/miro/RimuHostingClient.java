@@ -24,10 +24,9 @@
 package org.jclouds.rimuhosting.miro;
 
 import org.jclouds.concurrent.Timeout;
-import org.jclouds.rimuhosting.miro.domain.Image;
-import org.jclouds.rimuhosting.miro.domain.Instance;
-import org.jclouds.rimuhosting.miro.domain.PricingPlan;
+import org.jclouds.rimuhosting.miro.domain.*;
 
+import javax.ws.rs.PathParam;
 import java.util.SortedSet;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Future;
@@ -36,11 +35,11 @@ import java.util.concurrent.Future;
  * Provides synchronous access to RimuHosting.
  * <p/>
  *
- * @author Adrian Cole
+ * @author Ivan Meredith 
  * @see RimuHostingAsyncClient
  * @see <a href="TODO: insert URL of client documentation" />
  */
-@Timeout(duration = 4, timeUnit = TimeUnit.SECONDS)
+@Timeout(duration = 10, timeUnit = TimeUnit.SECONDS)
 public interface RimuHostingClient {
 
    SortedSet<Image> getImageList();
@@ -48,4 +47,12 @@ public interface RimuHostingClient {
    SortedSet<Instance> getInstanceList();
 
    SortedSet<PricingPlan> getPricingPlanList();
+
+   Instance createInstance(NewInstance newInstance);
+   
+   InstanceInfo getInstanceInfo(@PathParam("id") Long id);
+
+   ResizeResult resizeInstance(@PathParam("id") Long id);
+
+   InstanceInfo destroyInstance(@PathParam("id") Long id);
 }

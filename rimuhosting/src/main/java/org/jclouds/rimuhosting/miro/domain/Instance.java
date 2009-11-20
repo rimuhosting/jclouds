@@ -9,19 +9,19 @@ import com.google.gson.annotations.SerializedName;
  * Time: 12:39:28 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Instance implements Comparable<Instance>{
+public class Instance implements Comparable<Instance> {
 
 
    @SerializedName("allocated_ips")
-private IpAddresses ipAddresses;
-@SerializedName("billing_info")
-private BillingData billingData;
-@SerializedName("billing_oid")
-private Long billingId;
-@SerializedName("data_transfer_allowance")
-private DataTransferAllowance allowance;
-@SerializedName("distro")
-private String imageId;       
+   private IpAddresses ipAddresses;
+   @SerializedName("billing_info")
+   private BillingData billingData;
+   @SerializedName("billing_oid")
+   private Long billingId;
+   @SerializedName("data_transfer_allowance")
+   private DataTransferAllowance allowance;
+   @SerializedName("distro")
+   private String imageId;
    @SerializedName("domain_name")
    private String name;
 

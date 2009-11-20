@@ -1,7 +1,5 @@
 package org.jclouds.rimuhosting.miro.functions;
 
-import org.jclouds.rimuhosting.miro.domain.Image;
-import org.jclouds.rimuhosting.miro.domain.Instance;
 import org.jclouds.rimuhosting.miro.domain.PricingPlan;
 import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingResponse;
 import org.jclouds.http.functions.ParseJson;

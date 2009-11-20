@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Time: 12:58:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class DataTransferAllowance {
+public class DataTransferAllowance implements Comparable<DataTransferAllowance>{
    @SerializedName("data_transfer_gb")
    private Integer dataTransferGb;
 
@@ -21,4 +21,8 @@ public class DataTransferAllowance {
       this.dataTransferGb = dataTransferGb;
    }
 
+   @Override
+   public int compareTo(DataTransferAllowance dataTransferAllowance) {
+      return dataTransferGb - dataTransferAllowance.getDataTransferGb();
+   }
 }

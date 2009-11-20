@@ -27,12 +27,10 @@ import org.jclouds.rest.annotations.Endpoint;
 import org.jclouds.rest.annotations.ResponseParser;
 import org.jclouds.rest.annotations.MatrixParams;
 import org.jclouds.rest.annotations.RequestFilters;
-import org.jclouds.rimuhosting.miro.domain.Image;
-import org.jclouds.rimuhosting.miro.domain.Instance;
 import org.jclouds.rimuhosting.miro.domain.PricingPlan;
-import org.jclouds.rimuhosting.miro.functions.ParseImagesFromJsonResponse;
-import org.jclouds.rimuhosting.miro.functions.ParseInstancesFromJsonResponse;
-import org.jclouds.rimuhosting.miro.functions.ParsePricingPlansFromJsonResponse;
+import org.jclouds.rimuhosting.miro.domain.NewInstance;
+import org.jclouds.rimuhosting.miro.domain.*;
+import org.jclouds.rimuhosting.miro.functions.*;
 import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
 
 import javax.ws.rs.*;
@@ -73,4 +71,25 @@ public interface RimuHostingAsyncClient {
    @ResponseParser(ParsePricingPlansFromJsonResponse.class)
    Future<SortedSet<PricingPlan>> getPricingPlanList();
 
+   @POST @Path("/orders/new-vps")
+   @Produces(MediaType.APPLICATION_JSON)
+   @Consumes(MediaType.APPLICATION_JSON)
+   @ResponseParser(ParseInstanceFromJsonResponse.class)
+   Future<Instance> createInstance(NewInstance newInstance);
+
+   @GET @Path("/orders/order-{id}-blah/vps")
+   @Consumes(MediaType.APPLICATION_JSON)
+   @ResponseParser(ParseInstanceInfoFromJsonResponse.class)
+   Future<InstanceInfo> getInstanceInfo(@PathParam("id") Long id);
+
+   @PUT @Path("/orders/order-{id}-blah/vps/paramters")
+   @Produces(MediaType.APPLICATION_JSON)
+   @Consumes(MediaType.APPLICATION_JSON)
+   @ResponseParser(ParseResizeResponseFromJsonResponse.class)
+   Future<ResizeResult> resizeInstance(@PathParam("id") Long id);
+
+   @DELETE @Path("/orders/order-{id}-blah/vps")
+   @Consumes(MediaType.APPLICATION_JSON)
+   @ResponseParser(ParseDestroyResponseFromJsonResponse.class)
+   Future<InstanceInfo> destroyInstance(@PathParam("id") Long id);
 }
