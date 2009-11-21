@@ -23,18 +23,21 @@
  */
 package org.jclouds.rimuhosting.miro;
 
+import org.jclouds.rest.annotations.BinderParam;
 import org.jclouds.rest.annotations.Endpoint;
 import org.jclouds.rest.annotations.ResponseParser;
 import org.jclouds.rest.annotations.MatrixParams;
 import org.jclouds.rest.annotations.RequestFilters;
-import org.jclouds.rimuhosting.miro.domain.PricingPlan;
-import org.jclouds.rimuhosting.miro.domain.NewInstance;
+import org.jclouds.rest.binders.BindToJsonEntity;
+import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.domain.*;
 import org.jclouds.rimuhosting.miro.functions.*;
 import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import java.util.List;
 import java.util.SortedSet;
 import java.util.concurrent.Future;
 
@@ -75,7 +78,7 @@ public interface RimuHostingAsyncClient {
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
    @ResponseParser(ParseInstanceFromJsonResponse.class)
-   Future<Instance> createInstance(NewInstance newInstance);
+   Future<Instance> createInstance(@BinderParam(BindToJsonEntity.class) NewInstance newInstance);
 
    @GET @Path("/orders/order-{id}-blah/vps")
    @Consumes(MediaType.APPLICATION_JSON)
@@ -87,9 +90,15 @@ public interface RimuHostingAsyncClient {
    @Consumes(MediaType.APPLICATION_JSON)
    @ResponseParser(ParseResizeResponseFromJsonResponse.class)
    Future<ResizeResult> resizeInstance(@PathParam("id") Long id);
+   
+   @PUT @Path("/orders/order-{id}-blah/vps/paramters")
+   @Produces(MediaType.APPLICATION_JSON)
+   @Consumes(MediaType.APPLICATION_JSON)
+   @ResponseParser(ParseInstanceInfoFromJsonResponse.class)
+   Future<InstanceInfo> restartInstance(@PathParam("id") Long id);
 
    @DELETE @Path("/orders/order-{id}-blah/vps")
    @Consumes(MediaType.APPLICATION_JSON)
    @ResponseParser(ParseDestroyResponseFromJsonResponse.class)
-   Future<InstanceInfo> destroyInstance(@PathParam("id") Long id);
+   Future<List<String>> destroyInstance(@PathParam("id") Long id);
 }

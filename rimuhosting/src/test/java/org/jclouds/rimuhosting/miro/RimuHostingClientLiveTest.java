@@ -24,8 +24,13 @@
 package org.jclouds.rimuhosting.miro;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.testng.Assert.assertEquals;
+
 import org.jclouds.logging.log4j.config.Log4JLoggingModule;
-import org.testng.Assert;
+import org.jclouds.rimuhosting.miro.data.CreateOptions;
+import org.jclouds.rimuhosting.miro.data.NewInstance;
+import org.jclouds.rimuhosting.miro.domain.Image;
+import org.jclouds.rimuhosting.miro.domain.Instance;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
@@ -50,20 +55,23 @@ public class RimuHostingClientLiveTest {
 
    @Test
    public void testListImages() {
-      Assert.assertEquals(connection.getImageList().first().getId(), "lenny");
+	   assertEquals(connection.getImageList().first().getId(), "lenny");
    }
 
    @Test
    public void testListInstances() {
-      Assert.assertEquals(connection.getInstanceList().first().getName(), "deltacloud.rimuhosting.com");  
+	   assertEquals(connection.getInstanceList().first().getName(), "deltacloud.rimuhosting.com");  
    }
+  
    @Test
-   public void testListdPricingPlans() {
-      Assert.assertEquals(connection.getInstanceInfo(32902465L).getKernel(), "AUCK1");  
-   }
-
-   @Test
-   public void testLisdtPricingPlans() {
-      Assert.assertEquals(connection.getPricingPlanList().first().getId(), "AUCK1");
+   public void testLifeCycle() {
+	   //Get the first image, we dont really care what it is in this test.
+	   Image image = connection.getImageList().first();
+	   CreateOptions createOptions = new CreateOptions("test.jclouds.org", "testpassword123", image);
+	   //New instance data. Using miro1 becuase we want it to go to the right datacenter.
+	   NewInstance newInstance = new NewInstance(createOptions, "MIRO1");
+	   Instance instance = connection.createInstance(newInstance);
+	   assertEquals(instance.getName(), "test.jclouds.org");
+	   
    }
 }

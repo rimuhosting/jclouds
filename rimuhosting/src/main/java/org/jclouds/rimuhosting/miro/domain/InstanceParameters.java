@@ -1,5 +1,7 @@
 package org.jclouds.rimuhosting.miro.domain;
 
+import org.jclouds.rimuhosting.miro.data.PostData;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
  * Copyright RimuHosting 2009
  * @author Ivan Meredith <ivan@ivan.net.nz>
  */
-public class InstanceParameters {
+public class InstanceParameters implements PostData {
    /**
     * File system image size.
     */
@@ -51,4 +53,9 @@ public class InstanceParameters {
    public void setRam(Integer ram) {
       this.ram = ram;
    }
+
+	@Override
+	public void validate() {
+		//XXX: do we need to do anything here?
+	}
 }

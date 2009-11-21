@@ -23,13 +23,19 @@
  */
 package org.jclouds.rimuhosting.miro;
 
-import org.jclouds.concurrent.Timeout;
-import org.jclouds.rimuhosting.miro.domain.*;
-
-import javax.ws.rs.PathParam;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Future;
+
+import javax.ws.rs.PathParam;
+
+import org.jclouds.concurrent.Timeout;
+import org.jclouds.rimuhosting.miro.data.NewInstance;
+import org.jclouds.rimuhosting.miro.domain.Image;
+import org.jclouds.rimuhosting.miro.domain.Instance;
+import org.jclouds.rimuhosting.miro.domain.InstanceInfo;
+import org.jclouds.rimuhosting.miro.domain.PricingPlan;
+import org.jclouds.rimuhosting.miro.domain.ResizeResult;
 
 /**
  * Provides synchronous access to RimuHosting.
@@ -52,7 +58,9 @@ public interface RimuHostingClient {
    
    InstanceInfo getInstanceInfo(@PathParam("id") Long id);
 
+   InstanceInfo restartInstance(@PathParam("id") Long id);
+   
    ResizeResult resizeInstance(@PathParam("id") Long id);
 
-   InstanceInfo destroyInstance(@PathParam("id") Long id);
+   List<String> destroyInstance(@PathParam("id") Long id);
 }
