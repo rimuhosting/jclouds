@@ -32,6 +32,7 @@ import javax.ws.rs.PathParam;
 import org.jclouds.concurrent.Timeout;
 import org.jclouds.rest.annotations.BinderParam;
 import org.jclouds.rest.binders.BindToJsonEntity;
+import org.jclouds.rimuhosting.miro.binder.RimuHostingJsonBinder;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.domain.Image;
 import org.jclouds.rimuhosting.miro.domain.Instance;
@@ -47,7 +48,7 @@ import org.jclouds.rimuhosting.miro.domain.ResizeResult;
  * @see RimuHostingAsyncClient
  * @see <a href="TODO: insert URL of client documentation" />
  */
-@Timeout(duration = 10, timeUnit = TimeUnit.SECONDS)
+@Timeout(duration = 10, timeUnit = TimeUnit.MINUTES)
 public interface RimuHostingClient {
 
    SortedSet<Image> getImageList();
@@ -56,7 +57,7 @@ public interface RimuHostingClient {
 
    SortedSet<PricingPlan> getPricingPlanList();
 
-   Instance createInstance(@BinderParam(BindToJsonEntity.class) String blah);
+   Instance createInstance(@BinderParam(RimuHostingJsonBinder.class)NewInstance newInstance);
    
    InstanceInfo getInstanceInfo(@PathParam("id") Long id);
 

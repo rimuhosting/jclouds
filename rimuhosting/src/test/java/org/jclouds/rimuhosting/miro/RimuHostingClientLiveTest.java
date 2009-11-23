@@ -25,9 +25,14 @@ package org.jclouds.rimuhosting.miro;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import org.jclouds.logging.log4j.config.Log4JLoggingModule;
+import org.jclouds.rimuhosting.miro.data.CreateOptions;
 import org.jclouds.rimuhosting.miro.domain.Image;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
-import org.testng.Assert;
+import org.jclouds.rimuhosting.miro.domain.Instance;
+import static org.testng.Assert.assertEquals;
+
+import org.jclouds.rimuhosting.miro.domain.InstanceInfo;
+import org.jclouds.rimuhosting.miro.domain.internal.RunningState;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
@@ -52,21 +57,16 @@ public class RimuHostingClientLiveTest {
               .getApi();
    }
 
-   @Test
-   public void testListImages() {
-      Assert.assertEquals(connection.getImageList().first().getId(), "lenny");
-   }
 
-   @Test
-   public void testListInstances() {
-      Assert.assertEquals(connection.getInstanceList().first().getName(), "deltacloud.rimuhosting.com");  
-   }
-  
    @Test
    public void testLifeCycle() {
 	   //Get the first image, we dont really care what it is in this test.
-	   Image image = connection.getImageList().first();
-	   connection.createInstance("ddd");
-	  
+	   NewInstance inst = new NewInstance(new CreateOptions("test.jclouds.org",null,"lenny"),"MIRO1") ;
+       Instance instance = connection.createInstance(inst);
+       assertEquals(instance.getName(),"test.jclouds.org");
+       InstanceInfo instanceInfo =  connection.restartInstance(instance.getId());
+       assertEquals(instanceInfo.getState(), RunningState.RUNNING);
+
+       connection.destroyInstance(instance.getId());
    }
 }

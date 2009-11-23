@@ -29,6 +29,7 @@ import org.jclouds.rest.annotations.ResponseParser;
 import org.jclouds.rest.annotations.MatrixParams;
 import org.jclouds.rest.annotations.RequestFilters;
 import org.jclouds.rest.binders.BindToJsonEntity;
+import org.jclouds.rimuhosting.miro.binder.RimuHostingJsonBinder;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.domain.*;
 import org.jclouds.rimuhosting.miro.functions.*;
@@ -78,7 +79,7 @@ public interface RimuHostingAsyncClient {
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
    @ResponseParser(ParseInstanceFromJsonResponse.class)
-   Future<Instance> createInstance(@BinderParam(BindToJsonEntity.class) String blah);
+   Future<Instance> createInstance(@BinderParam(RimuHostingJsonBinder.class) NewInstance newInstance);
 
    @GET @Path("/orders/order-{id}-blah/vps")
    @Consumes(MediaType.APPLICATION_JSON)
@@ -91,7 +92,7 @@ public interface RimuHostingAsyncClient {
    @ResponseParser(ParseResizeResponseFromJsonResponse.class)
    Future<ResizeResult> resizeInstance(@PathParam("id") Long id);
    
-   @PUT @Path("/orders/order-{id}-blah/vps/paramters")
+   @PUT @Path("/orders/order-{id}-blah/vps/running-state")
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
    @ResponseParser(ParseInstanceInfoFromJsonResponse.class)
