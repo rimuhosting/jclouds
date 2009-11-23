@@ -78,7 +78,7 @@ public interface RimuHostingAsyncClient {
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
    @ResponseParser(ParseInstanceFromJsonResponse.class)
-   Future<Instance> createInstance(@BinderParam(BindToJsonEntity.class) NewInstance newInstance);
+   Future<Instance> createInstance(@BinderParam(BindToJsonEntity.class) String blah);
 
    @GET @Path("/orders/order-{id}-blah/vps")
    @Consumes(MediaType.APPLICATION_JSON)

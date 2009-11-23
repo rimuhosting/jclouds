@@ -30,6 +30,8 @@ import java.util.concurrent.TimeUnit;
 import javax.ws.rs.PathParam;
 
 import org.jclouds.concurrent.Timeout;
+import org.jclouds.rest.annotations.BinderParam;
+import org.jclouds.rest.binders.BindToJsonEntity;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.domain.Image;
 import org.jclouds.rimuhosting.miro.domain.Instance;
@@ -54,7 +56,7 @@ public interface RimuHostingClient {
 
    SortedSet<PricingPlan> getPricingPlanList();
 
-   Instance createInstance(NewInstance newInstance);
+   Instance createInstance(@BinderParam(BindToJsonEntity.class) String blah);
    
    InstanceInfo getInstanceInfo(@PathParam("id") Long id);
 
