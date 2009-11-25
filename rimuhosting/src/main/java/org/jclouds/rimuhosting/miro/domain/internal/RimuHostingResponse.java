@@ -1,6 +1,8 @@
 package org.jclouds.rimuhosting.miro.domain.internal;
 
-
+/**
+ * Object that the payload on requests is wrapped in.
+ */
 public class RimuHostingResponse {
    private String status_message;
    private Integer status_code;

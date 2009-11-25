@@ -3,15 +3,10 @@ package org.jclouds.rimuhosting.miro.binder;
 import com.google.common.collect.ImmutableMap;
 import org.jclouds.http.HttpRequest;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.google.common.base.Preconditions.checkState;
-
 /**
- * @author Ivan MEredith
- *         Date: 23/11/2009
- *         Time: 9:04:50 PM
+ * Need to PUT a static string
+ *
+ * {"request":{"running_state":"RESTARTING"}
  */
 public class RimuHostingRebootJsonBinder extends RimuHostingJsonBinder{
       public void bindToRequest(HttpRequest request, Object toBind) {

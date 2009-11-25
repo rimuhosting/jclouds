@@ -1,35 +1,16 @@
 package org.jclouds.rimuhosting.miro;
 
+import com.google.common.base.Predicate;
 import org.jclouds.logging.Logger;
-import org.jclouds.ssh.SshClient;
-
-import javax.annotation.Resource;
-import javax.inject.Inject;
-import java.net.InetSocketAddress;
-import java.net.URI;
-     import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.URI;
-import java.util.Map;
-import java.util.SortedSet;
-
-import javax.annotation.Resource;
-import javax.inject.Inject;
-
-import org.jclouds.logging.Logger;
-import org.jclouds.ssh.ExecResponse;
-import org.jclouds.ssh.SshClient;
-import org.jclouds.ssh.SshClient.Factory;
-import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.data.CreateOptions;
-import org.jclouds.rimuhosting.miro.domain.NewInstanceResponse;
+import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.domain.Instance;
-import static com.google.common.base.Preconditions.checkArgument;
+import org.jclouds.rimuhosting.miro.domain.NewInstanceResponse;
+import org.jclouds.ssh.SshClient.Factory;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Iterables;
-import com.google.common.base.Predicate;
+import javax.annotation.Resource;
+import javax.inject.Inject;
+import java.net.InetSocketAddress;
 
 
 public class RimuHostingComputeClient {

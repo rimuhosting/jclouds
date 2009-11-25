@@ -3,7 +3,8 @@ package org.jclouds.rimuhosting.miro.data;
 import com.google.gson.annotations.SerializedName;
 
 /**
- *
+ * Options for a clone.
+ * TODO: test and add contructors.
  * @author Ivan Meredith <ivan@ivan.net.nz>
  */
 public class CloneOptions implements PostData {

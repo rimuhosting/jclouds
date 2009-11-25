@@ -2,7 +2,9 @@ package org.jclouds.rimuhosting.miro.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-
+/**
+ * Image object.
+ */
 public class Image implements Comparable<Image> {
    @SerializedName("distro_code")
    private String id;
@@ -11,7 +13,7 @@ public class Image implements Comparable<Image> {
 
    @Override
    public int compareTo(Image image) {
-      return 0;
+      return id.compareTo(image.getId());
    }
 
    public String getId() {

@@ -2,7 +2,9 @@ package org.jclouds.rimuhosting.miro.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-
+/**
+ * TODO: test
+ */
 public class DataCenter implements Comparable<DataCenter> {
    @SerializedName("data_center_location_code")
    private String id;

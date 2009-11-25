@@ -1,11 +1,8 @@
 package org.jclouds.rimuhosting.miro.domain;
 
-import org.jclouds.rimuhosting.miro.domain.internal.RunningState;
-import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingTimestamp;
-
-import java.sql.Timestamp;
-
 import com.google.gson.annotations.SerializedName;
+import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingTimestamp;
+import org.jclouds.rimuhosting.miro.domain.internal.RunningState;
 
 
 public class InstanceInfo {

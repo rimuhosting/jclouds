@@ -23,18 +23,16 @@
  */
 package org.jclouds.rimuhosting.miro;
 
-import java.util.List;
-import java.util.SortedSet;
-import java.util.concurrent.TimeUnit;
-
-import javax.ws.rs.PathParam;
-
 import org.jclouds.concurrent.Timeout;
 import org.jclouds.rest.annotations.BinderParam;
-import org.jclouds.rest.binders.BindToJsonEntity;
 import org.jclouds.rimuhosting.miro.binder.RimuHostingJsonBinder;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
 import org.jclouds.rimuhosting.miro.domain.*;
+
+import javax.ws.rs.PathParam;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Provides synchronous access to RimuHosting.

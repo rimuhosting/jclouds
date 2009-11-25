@@ -1,17 +1,18 @@
 package org.jclouds.rimuhosting.miro.domain.internal;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.sql.Timestamp;
 
+/**
+ * Handles a timestamp JSON object from rimuhosting
+ */
 public class RimuHostingTimestamp {
    private Long ms_since_epoch;
 
-   public Long getMs_since_epoch() {
+   public Long getMs() {
       return ms_since_epoch;
    }
 
-   public void setMs_since_epoch(Long ms_since_epoch) {
+   public void setMs(Long ms_since_epoch) {
       this.ms_since_epoch = ms_since_epoch;
    }
 

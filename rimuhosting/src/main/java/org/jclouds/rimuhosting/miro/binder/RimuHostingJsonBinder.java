@@ -1,16 +1,17 @@
 package org.jclouds.rimuhosting.miro.binder;
 
+import static com.google.common.base.Preconditions.checkState;
 import org.jclouds.http.HttpRequest;
 import org.jclouds.rest.binders.BindToJsonEntity;
 
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.google.common.base.Preconditions.checkState;
-
+/**
+ * Generic binder for RimuHosting POSTS/PUTS. In the form of
+ *
+ * {"request":{...}}
+ */
 public class RimuHostingJsonBinder extends BindToJsonEntity {
   public void bindToRequest(HttpRequest request, Map<String, String> postParams) {
       bindToRequest(request, (Object) postParams);

@@ -1,15 +1,14 @@
 package org.jclouds.rimuhosting.miro.domain;
 
-import org.jclouds.rimuhosting.miro.data.PostData;
-
 import com.google.gson.annotations.SerializedName;
+import org.jclouds.rimuhosting.miro.data.PostData;
 
 /**
  * Attributes about a running VPS.&nbsp; Implicit with any changes to
  * these attributes on a VPS is that we'd need to restart the VPS for
  * the changes to happen.&nbsp; At least at this point in time.
  *
- * @author Ivan Meredith <ivan@ivan.net.nz>
+ * @author Ivan Meredith
  */
 public class InstanceParameters implements PostData {
    /**

@@ -1,21 +1,19 @@
 package org.jclouds.rimuhosting.miro.functions;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.jclouds.http.functions.ParseJson;
 import org.jclouds.rimuhosting.miro.domain.PricingPlan;
 import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingResponse;
-import org.jclouds.http.functions.ParseJson;
 
-import java.util.SortedSet;
-import java.util.Map;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import javax.inject.Singleton;
-import javax.inject.Inject;
+import java.util.Map;
+import java.util.SortedSet;
 
 @Singleton
 public class ParsePricingPlansFromJsonResponse extends ParseJson<SortedSet<PricingPlan>> {

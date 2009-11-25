@@ -3,7 +3,10 @@ package org.jclouds.rimuhosting.miro.domain;
 import com.google.gson.annotations.SerializedName;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
 
-
+/**
+ * Wrapper object to get back all data from a Instance create. The Password has been populated the NewInstance
+ * object.
+ */
 public class NewInstanceResponse implements Comparable<NewInstanceResponse> {
    @SerializedName("about_order")
    private Instance instance;

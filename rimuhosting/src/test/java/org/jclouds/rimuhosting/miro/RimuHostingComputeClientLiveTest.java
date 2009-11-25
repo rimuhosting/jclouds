@@ -24,34 +24,25 @@
 package org.jclouds.rimuhosting.miro;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.testng.Assert.assertEquals;
-
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.URI;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
+import com.google.common.base.Predicate;
+import com.google.inject.*;
 import org.jclouds.logging.log4j.config.Log4JLoggingModule;
 import org.jclouds.predicates.AddressReachable;
 import org.jclouds.predicates.RetryablePredicate;
 import org.jclouds.predicates.SocketOpen;
-
 import org.jclouds.rimuhosting.miro.domain.Instance;
 import org.jclouds.ssh.jsch.config.JschSshClientModule;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
-import com.google.common.base.Predicate;
-import com.google.inject.AbstractModule;
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.Provides;
-import com.google.inject.TypeLiteral;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Tests behavior of {@code TerremarkVCloudClient}
@@ -64,19 +55,6 @@ public class RimuHostingComputeClientLiveTest {
    RimuHostingClient rhClient;
 
    private Long id;
-   private InetAddress privateAddress;
-
-
-   private static class Expectation {
-      final long hardDisk;
-      final String os;
-
-      public Expectation(long hardDisk, String os) {
-         this.hardDisk = hardDisk;
-         this.os = os;
-      }
-   }
-
 
 
    private InetAddress publicIp;

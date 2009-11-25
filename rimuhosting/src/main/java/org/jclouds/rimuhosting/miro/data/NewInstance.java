@@ -1,17 +1,17 @@
 package org.jclouds.rimuhosting.miro.data;
 
 import com.google.gson.annotations.SerializedName;
-
 import org.jclouds.rimuhosting.miro.domain.InstanceParameters;
 import org.jclouds.rimuhosting.miro.domain.PricingPlan;
 
 /**
  * This structure defines the VPS to be setup.
  *
- * @author Ivan Meredith <ivan@ivan.net.nz>
+ * @author Ivan Meredith
  */
 public class NewInstance implements PostData{
 	public NewInstance(){}
+   
    public NewInstance(CreateOptions createOptions, PricingPlan pricingPlan){
 		this.createOptions = createOptions;
 		if(pricingPlan != null){

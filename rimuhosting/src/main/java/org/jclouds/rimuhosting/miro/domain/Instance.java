@@ -3,7 +3,10 @@ package org.jclouds.rimuhosting.miro.domain;
 import com.google.gson.annotations.SerializedName;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
 
-
+/**
+ * Instance Object.
+ * TODO: javadoc
+ */
 public class Instance implements Comparable<Instance> {
 
 
@@ -142,16 +145,16 @@ public class Instance implements Comparable<Instance> {
       this.instanceParameters = instanceParameters;
    }
 
-   @Override
-   public int compareTo(Instance instance) {
-      return name.compareTo(instance.getName());
-   }
-
    public NewInstance getInstanceRequest() {
       return instanceRequest;
    }
 
    public void setInstanceRequest(NewInstance instanceRequest) {
       this.instanceRequest = instanceRequest;
+   }
+   
+   @Override
+   public int compareTo(Instance instance) {
+      return name.compareTo(instance.getName());
    }
 }

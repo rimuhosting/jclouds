@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.sql.Timestamp;
 
+/**
+ * Billing data. Need to make it inteface with jclouds.
+ * TODO: test
+ */
 public class BillingData {
    @SerializedName("cancellation_date")
    private Timestamp dateCancelled;

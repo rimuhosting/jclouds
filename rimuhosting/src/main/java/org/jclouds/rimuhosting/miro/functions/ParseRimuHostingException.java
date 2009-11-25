@@ -11,14 +11,19 @@ import javax.inject.Singleton;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+/**
+ * On non 2xx we have an error. RimuHosting using the same json base object.
+ *
+ * TODO: map exceptions out into something that suits jclouds.
+ */
 @Singleton
-public class RimuHostingExceptionParser implements Function<Exception, Object> {
+public class ParseRimuHostingException implements Function<Exception, Object> {
    private Gson gson;
    @Inject
-   public RimuHostingExceptionParser(Gson gson) {
+   public ParseRimuHostingException(Gson gson) {
       this.gson = gson;
    }
-   
+
    @Override
    public Object apply(Exception e) {
       if(e instanceof HttpResponseException){

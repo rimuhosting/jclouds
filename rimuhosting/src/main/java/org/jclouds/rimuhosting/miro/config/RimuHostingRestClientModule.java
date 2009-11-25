@@ -27,7 +27,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import org.jclouds.concurrent.internal.SyncProxy;
 import org.jclouds.http.RequiresHttp;
-import org.jclouds.http.filters.BasicAuthentication;
 import org.jclouds.rest.ConfiguresRestClient;
 import org.jclouds.rest.RestClientFactory;
 import org.jclouds.rimuhosting.miro.RimuHosting;

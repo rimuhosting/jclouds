@@ -1,8 +1,7 @@
 package org.jclouds.rimuhosting.miro.data;
 
-import org.jclouds.rimuhosting.miro.domain.Image;
-
 import com.google.gson.annotations.SerializedName;
+import org.jclouds.rimuhosting.miro.domain.Image;
 
 /**
  * Some options we need to create a new server/VPS.

@@ -1,23 +1,19 @@
 package org.jclouds.rimuhosting.miro.filters;
 
-import org.jclouds.http.HttpRequestFilter;
-import org.jclouds.http.HttpRequest;
+import static com.google.common.base.Preconditions.checkNotNull;
 import org.jclouds.http.HttpException;
-import org.jclouds.http.HttpUtils;
+import org.jclouds.http.HttpRequest;
+import org.jclouds.http.HttpRequestFilter;
 
 import javax.inject.Singleton;
 import javax.ws.rs.core.HttpHeaders;
-import java.util.List;
 import java.util.Collections;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 2:58:38 PM
- * To change this template use File | Settings | File Templates.
+ * RimuHosting Authentication is a Authorization Header.
+ *
+ * Authorization: rimuhosting apikey=&lt;key>
  */
 @Singleton
 public class RimuHostingAuthentication implements HttpRequestFilter {

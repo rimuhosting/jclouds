@@ -27,12 +27,11 @@ import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.TypeLiteral;
-import org.jclouds.http.filters.BasicAuthentication;
 import org.jclouds.rest.RestContext;
 import org.jclouds.rest.internal.RestContextImpl;
 import org.jclouds.rimuhosting.miro.config.RimuHostingRestClientModule;
-import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 import org.jclouds.rimuhosting.miro.filters.RimuHostingAuthentication;
+import org.jclouds.rimuhosting.miro.reference.RimuHostingConstants;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 

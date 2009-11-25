@@ -1,22 +1,18 @@
 package org.jclouds.rimuhosting.miro.functions;
 
-import org.jclouds.rimuhosting.miro.domain.Instance;
-import org.jclouds.rimuhosting.miro.domain.InstanceParameters;
-import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingResponse;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.jclouds.http.functions.ParseJson;
+import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingResponse;
 
-import java.util.Map;
-import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import javax.inject.Singleton;
-import javax.inject.Inject;
+import java.util.List;
+import java.util.Map;
 
 
 @Singleton

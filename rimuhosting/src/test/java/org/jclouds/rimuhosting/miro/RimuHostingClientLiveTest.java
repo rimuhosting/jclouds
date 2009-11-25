@@ -27,14 +27,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.jclouds.logging.log4j.config.Log4JLoggingModule;
 import org.jclouds.rimuhosting.miro.data.CreateOptions;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
-import static org.testng.Assert.*;
-
 import org.jclouds.rimuhosting.miro.domain.*;
 import org.jclouds.rimuhosting.miro.domain.internal.RunningState;
+import static org.testng.Assert.*;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
-
-import com.google.common.base.Preconditions;
 
 import java.util.SortedSet;
 

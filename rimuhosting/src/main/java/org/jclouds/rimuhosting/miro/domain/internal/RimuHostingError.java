@@ -2,7 +2,9 @@ package org.jclouds.rimuhosting.miro.domain.internal;
 
 import com.google.gson.annotations.SerializedName;
 
-
+/**
+ * Error Object from a response
+ */
 public class RimuHostingError {
    @SerializedName("error_class")
    private String errorClass;
