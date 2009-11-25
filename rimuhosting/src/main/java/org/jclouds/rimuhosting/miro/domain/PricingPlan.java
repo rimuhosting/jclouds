@@ -4,13 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import org.jclouds.rimuhosting.miro.domain.internal.ServerType;
 import org.jclouds.rimuhosting.miro.domain.DataCenter;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 4:30:23 PM
- * To change this template use File | Settings | File Templates.
- */
 public class PricingPlan implements Comparable<PricingPlan>{
    @SerializedName("minimum_data_transfer_allowance_gb")
    private Long dataTransfer;

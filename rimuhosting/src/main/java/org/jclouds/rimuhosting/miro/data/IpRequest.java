@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
  * Number of IPs VPS needs.&nbsp; In a separate data structure so that
   * at a later date we can add more IPs to a provisioned server.
  *
- * Copyright RimuHosting 2009
  * @author Ivan Meredith &lt;ivan@ivan.net.nz>
  */
 public class IpRequest implements PostData {

@@ -1,6 +1,7 @@
 package org.jclouds.rimuhosting.miro.functions;
 
 import org.jclouds.rimuhosting.miro.domain.Instance;
+import org.jclouds.rimuhosting.miro.domain.NewInstanceResponse;
 import org.jclouds.rimuhosting.miro.domain.internal.RimuHostingResponse;
 import org.jclouds.http.functions.ParseJson;
 
@@ -18,29 +19,19 @@ import javax.inject.Inject;
 
 
 @Singleton
-public class ParseInstanceFromJsonResponse extends ParseJson<Instance> {
+public class ParseNewInstanceResponseFromJsonResponse extends ParseJson<NewInstanceResponse> {
    @Inject
-   public ParseInstanceFromJsonResponse(Gson gson) {
+   public ParseNewInstanceResponseFromJsonResponse(Gson gson) {
       super(gson);
    }
 
-   private static class OrderResponse extends RimuHostingResponse {
-      private Instance about_order;
-      public Instance getAboutOrder() {
-         return about_order;
-      }
-
-      public void setAboutOrder(Instance about_orders) {
-         this.about_order = about_orders;
-      }
-   }
    @Override
-   protected Instance apply(InputStream stream) {
-      Type setType = new TypeToken<Map<String, OrderResponse>>() {
+   protected NewInstanceResponse apply(InputStream stream) {
+      Type setType = new TypeToken<Map<String, NewInstanceResponse>>() {
       }.getType();
       try {
-         Map<String, OrderResponse> responseMap = gson.fromJson(new InputStreamReader(stream, "UTF-8"), setType);
-         return responseMap.values().iterator().next().getAboutOrder();
+         Map<String, NewInstanceResponse> responseMap = gson.fromJson(new InputStreamReader(stream, "UTF-8"), setType);
+         return responseMap.values().iterator().next();
       } catch (UnsupportedEncodingException e) {
          throw new RuntimeException("jclouds requires UTF-8 encoding", e);
       }

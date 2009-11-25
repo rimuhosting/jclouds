@@ -17,13 +17,6 @@ import com.google.gson.reflect.TypeToken;
 import javax.inject.Singleton;
 import javax.inject.Inject;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 2:46:03 PM
- * To change this template use File | Settings | File Templates.
- */
 @Singleton
 public class ParsePricingPlansFromJsonResponse extends ParseJson<SortedSet<PricingPlan>> {
    @Inject

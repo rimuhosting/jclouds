@@ -34,11 +34,7 @@ import org.jclouds.rest.annotations.BinderParam;
 import org.jclouds.rest.binders.BindToJsonEntity;
 import org.jclouds.rimuhosting.miro.binder.RimuHostingJsonBinder;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
-import org.jclouds.rimuhosting.miro.domain.Image;
-import org.jclouds.rimuhosting.miro.domain.Instance;
-import org.jclouds.rimuhosting.miro.domain.InstanceInfo;
-import org.jclouds.rimuhosting.miro.domain.PricingPlan;
-import org.jclouds.rimuhosting.miro.domain.ResizeResult;
+import org.jclouds.rimuhosting.miro.domain.*;
 
 /**
  * Provides synchronous access to RimuHosting.
@@ -57,10 +53,12 @@ public interface RimuHostingClient {
 
    SortedSet<PricingPlan> getPricingPlanList();
 
-   Instance createInstance(@BinderParam(RimuHostingJsonBinder.class)NewInstance newInstance);
+   NewInstanceResponse createInstance(@BinderParam(RimuHostingJsonBinder.class)NewInstance newInstance);
    
    InstanceInfo getInstanceInfo(@PathParam("id") Long id);
 
+   Instance getInstance(@PathParam("id") Long id);
+   
    InstanceInfo restartInstance(@PathParam("id") Long id);
    
    ResizeResult resizeInstance(@PathParam("id") Long id);

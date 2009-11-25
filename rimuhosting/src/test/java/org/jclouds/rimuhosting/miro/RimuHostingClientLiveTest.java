@@ -26,17 +26,17 @@ package org.jclouds.rimuhosting.miro;
 import static com.google.common.base.Preconditions.checkNotNull;
 import org.jclouds.logging.log4j.config.Log4JLoggingModule;
 import org.jclouds.rimuhosting.miro.data.CreateOptions;
-import org.jclouds.rimuhosting.miro.domain.Image;
 import org.jclouds.rimuhosting.miro.data.NewInstance;
-import org.jclouds.rimuhosting.miro.domain.Instance;
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 
-import org.jclouds.rimuhosting.miro.domain.InstanceInfo;
+import org.jclouds.rimuhosting.miro.domain.*;
 import org.jclouds.rimuhosting.miro.domain.internal.RunningState;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 import com.google.common.base.Preconditions;
+
+import java.util.SortedSet;
 
 /**
  * Tests behavior of {@code RimuHostingClient}
@@ -57,16 +57,42 @@ public class RimuHostingClientLiveTest {
               .getApi();
    }
 
+   @Test
+   public void testPricingPlans(){
+      SortedSet<PricingPlan> plans = connection.getPricingPlanList();
+      for(PricingPlan plan : plans){
+         if(plan.getId().equalsIgnoreCase("miro1")){
+            assertTrue(true);
+            return;
+         }
+      }
+      assertTrue(false);
+   }
 
+   @Test
+   public void testImages(){
+      SortedSet<Image> images = connection.getImageList();
+      for(Image image : images){
+         if(image.getId().equalsIgnoreCase("lenny")){
+            assertTrue(true);
+            return;
+         }
+      }
+      assertTrue(false, "lenny not found");
+   }
    @Test
    public void testLifeCycle() {
 	   //Get the first image, we dont really care what it is in this test.
 	   NewInstance inst = new NewInstance(new CreateOptions("test.jclouds.org",null,"lenny"),"MIRO1") ;
-       Instance instance = connection.createInstance(inst);
-       assertEquals(instance.getName(),"test.jclouds.org");
-       InstanceInfo instanceInfo =  connection.restartInstance(instance.getId());
-       assertEquals(instanceInfo.getState(), RunningState.RUNNING);
-
-       connection.destroyInstance(instance.getId());
+      NewInstanceResponse instanceResponse = connection.createInstance(inst);
+      Instance instance = instanceResponse.getInstance();
+      //Now we have the instance, lets restart it
+      assertNotNull(instance.getId());
+      InstanceInfo instanceInfo =  connection.restartInstance(instance.getId());
+      connection.destroyInstance(instance.getId());
+      //Should be running now.
+      assertEquals(instanceInfo.getState(), RunningState.RUNNING);
+      assertEquals(instance.getName(),"test.jclouds.org");
+      assertEquals(instance.getImageId(), "lenny");
    }
 }

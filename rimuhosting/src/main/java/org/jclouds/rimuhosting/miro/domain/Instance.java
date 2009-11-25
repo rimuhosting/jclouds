@@ -1,14 +1,9 @@
 package org.jclouds.rimuhosting.miro.domain;
 
 import com.google.gson.annotations.SerializedName;
+import org.jclouds.rimuhosting.miro.data.NewInstance;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 12:39:28 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Instance implements Comparable<Instance> {
 
 
@@ -38,6 +33,10 @@ public class Instance implements Comparable<Instance> {
    private String slug;
    @SerializedName("vps_parameters")
    private InstanceParameters instanceParameters;
+
+   //Object returned back with
+   private transient NewInstance instanceRequest;
+
 
    public IpAddresses getIpAddresses() {
       return ipAddresses;
@@ -146,5 +145,13 @@ public class Instance implements Comparable<Instance> {
    @Override
    public int compareTo(Instance instance) {
       return name.compareTo(instance.getName());
+   }
+
+   public NewInstance getInstanceRequest() {
+      return instanceRequest;
+   }
+
+   public void setInstanceRequest(NewInstance instanceRequest) {
+      this.instanceRequest = instanceRequest;
    }
 }

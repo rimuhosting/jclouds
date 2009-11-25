@@ -7,13 +7,7 @@ import java.sql.Timestamp;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 20/11/2009
- * Time: 10:58:18 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class InstanceInfo {
    /**
     * Whether the server pinged from the host server.

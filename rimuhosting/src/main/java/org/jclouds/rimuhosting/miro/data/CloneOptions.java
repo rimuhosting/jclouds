@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  *
- * Copyright RimuHosting 2009
  * @author Ivan Meredith <ivan@ivan.net.nz>
  */
 public class CloneOptions implements PostData {

@@ -44,7 +44,7 @@ import java.net.URI;
 /**
  * Tests annotation parsing of {@code RimuHostingAsyncClient}
  *
- * @author Adrian Cole
+ * @author Ivan Meredith
  */
 @Test(groups = "unit", testName = "rimuhosting.RimuHostingAsyncClientTest")
 public class RimuHostingAsyncClientTest extends RestClientTest<RimuHostingAsyncClient> {

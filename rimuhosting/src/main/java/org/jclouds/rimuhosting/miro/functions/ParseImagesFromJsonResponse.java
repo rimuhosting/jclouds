@@ -38,11 +38,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.SortedSet;
 
-/**
- * This parses {@link org.jclouds.rimuhosting.miro.domain.Image} from a json string.
- *
- * @author Ivan Meredith
- */
+
 @Singleton
 public class ParseImagesFromJsonResponse extends ParseJson<SortedSet<Image>> {
 

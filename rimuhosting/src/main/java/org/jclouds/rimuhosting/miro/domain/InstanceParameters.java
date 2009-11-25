@@ -8,8 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * Attributes about a running VPS.&nbsp; Implicit with any changes to
  * these attributes on a VPS is that we'd need to restart the VPS for
  * the changes to happen.&nbsp; At least at this point in time.
-
- * Copyright RimuHosting 2009
+ *
  * @author Ivan Meredith <ivan@ivan.net.nz>
  */
 public class InstanceParameters implements PostData {

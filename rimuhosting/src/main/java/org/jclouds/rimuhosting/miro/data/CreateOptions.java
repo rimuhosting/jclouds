@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Some options we need to create a new server/VPS.
  *
- * Copyright RimuHosting 2009
  * @author Ivan Meredith <ivan@ivan.net.nz>
  */
 public class CreateOptions implements PostData{

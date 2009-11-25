@@ -8,11 +8,11 @@ import org.jclouds.rimuhosting.miro.domain.PricingPlan;
 /**
  * This structure defines the VPS to be setup.
  *
- * Copyright RimuHosting 2009
  * @author Ivan Meredith <ivan@ivan.net.nz>
  */
 public class NewInstance implements PostData{
-	public NewInstance(CreateOptions createOptions, PricingPlan pricingPlan){
+	public NewInstance(){}
+   public NewInstance(CreateOptions createOptions, PricingPlan pricingPlan){
 		this.createOptions = createOptions;
 		if(pricingPlan != null){
 			this.planId = pricingPlan.getId();

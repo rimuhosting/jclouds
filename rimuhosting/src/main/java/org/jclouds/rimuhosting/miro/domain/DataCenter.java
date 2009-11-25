@@ -2,13 +2,7 @@ package org.jclouds.rimuhosting.miro.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 4:37:27 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class DataCenter implements Comparable<DataCenter> {
    @SerializedName("data_center_location_code")
    private String id;

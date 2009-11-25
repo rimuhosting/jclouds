@@ -4,13 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.sql.Timestamp;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 12:56:50 PM
- * To change this template use File | Settings | File Templates.
- */
 public class BillingData {
    @SerializedName("cancellation_date")
    private Timestamp dateCancelled;

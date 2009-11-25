@@ -1,16 +1,10 @@
 package org.jclouds.rimuhosting.miro.domain.internal;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 19/11/2009
- * Time: 12:24:30 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class RimuHostingResponse {
    private String status_message;
    private Integer status_code;
-
+   private RimuHostingError error_info;
    public String getStatusMessage() {
       return status_message;
    }
@@ -28,4 +22,11 @@ public class RimuHostingResponse {
    }
 
 
+   public RimuHostingError getErrorInfo() {
+      return error_info;
+   }
+
+   public void setErrorInfo(RimuHostingError error_info) {
+      this.error_info = error_info;
+   }
 }

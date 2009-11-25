@@ -15,6 +15,6 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class RimuHostingRebootJsonBinder extends RimuHostingJsonBinder{
       public void bindToRequest(HttpRequest request, Object toBind) {
-        super.bindToRequest(request, ImmutableMap.of("running_state", "REBOOTING"));
-        }
+        super.bindToRequest(request,(Object)ImmutableMap.of("running_state", "RESTARTING"));
+      }
 }

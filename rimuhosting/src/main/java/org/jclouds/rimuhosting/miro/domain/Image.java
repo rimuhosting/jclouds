@@ -2,13 +2,7 @@ package org.jclouds.rimuhosting.miro.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ivan
- * Date: 18/11/2009
- * Time: 4:54:17 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Image implements Comparable<Image> {
    @SerializedName("distro_code")
    private String id;
